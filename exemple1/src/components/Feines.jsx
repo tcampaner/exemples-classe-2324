@@ -9,6 +9,11 @@ export default function Feines() {
     const  addItem=()=> {
         setFeines([...feines, tasca]);
     }
+
+    const deleteItem=(index)=> {
+        setFeines(feines.filter((item, i) => i !== index));
+    }
+
   return (
         <div>
         <h1>Feines</h1>
@@ -24,7 +29,7 @@ export default function Feines() {
             </Button>
         </Form>
         <hr/>
-        <Llista elements={feines}/>
+        <Llista elements={feines} esborrar={deleteItem}/>
         </div>
        
     );
