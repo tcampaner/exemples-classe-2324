@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Feines from "./components/Feines";
+import Ajuda from "./components/Ajuda";
+import Menu from "./components/Menu";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Menu />} >
+          <Route path="/feines" element={<Feines />} />
+          <Route path="/ajuda" element={<Ajuda />} />
+          <Route path="*" element={<h1>Opció incorrecta</h1>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
