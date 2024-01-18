@@ -1,22 +1,18 @@
 import {Link, Outlet} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navbar, Nav, Container} from 'react-bootstrap';
 export default function Menu() {
     return (
         <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Menu</Link>
-          </li>
-          <li>
-            <Link to="/feines">Feines</Link>
-          </li>
-          <li>
-            <Link to="/ajuda">Ajuda</Link>
-          </li>
-        </ul>
-      </nav>
-      <hr/>
-      <Outlet/>
-      </>
+            <Navbar bg="dark" className="color-nav" variant="dark" expand="sm" sticky="top">
+                <Nav className="mr-auto">
+                    <Link className="nav-link" to="/feines">Feines</Link>
+                    <Link className="nav-link" to="/ajuda">Ajuda</Link>
+                </Nav>
+            </Navbar>
+            <Container>
+                <Outlet />
+            </Container>
+        </>
     );
 }
