@@ -1,7 +1,6 @@
 import {Form,Button} from 'react-bootstrap';
 import {useState} from 'react';
 import Llista from './Llista';
-
 export default function Feines() {
     const [feines, setFeines] = useState([]);
     const [tasca, setTasca] = useState('');
