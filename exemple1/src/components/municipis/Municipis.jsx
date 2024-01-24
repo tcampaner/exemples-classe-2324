@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, Fragment} from "react";
 import { ListGroup, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,7 @@ export default function Municipis() {
     const [descarregant, setDescarregant] = useState(true);
     const navigate = useNavigate();
 
+    /*
     useEffect(
         () => {
             fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis')
@@ -25,6 +26,21 @@ export default function Municipis() {
         ,
         []
     );
+    */
+
+    useEffect(()=>{descarrega()},[]);
+    // Exemple de ftech amb async/await
+    const descarrega=async ()=>{
+        try {
+            const resposta = await fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis');
+            // if (resposta.status !== 200) throw 'Error en descarregar les dades';
+            const jsonresposta = await resposta.json();
+            setMunicipis(jsonresposta.result);
+        } catch (error) {
+            console.log(error);
+        }
+        setDescarregant(false);
+    }
 
    if (descarregant) {
         return (
@@ -58,14 +74,14 @@ export default function Municipis() {
         <ListGroup>
             {municipis.map(function (element, index) {
                 return (
-                    <>
+                    <Fragment key={index}>   { /* Fragment es equivalent a <>, amb key resolvem el problema del warning */   }
                         <ListGroup.Item variant="primary" >
-                            <Row key={index}>
+                            <Row>
                                 <Col>{element.nom}</Col>
                                 <Col>{element.illa.nom}</Col>
                             </Row>
                         </ListGroup.Item>
-                    </>
+                    </Fragment>
                 );
             })}
         </ListGroup>
