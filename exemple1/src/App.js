@@ -6,6 +6,7 @@ import Municipis from "./components/municipis/Municipis";
 import Autors from "./components/autors/Autors";
 import MunicipisEdita from "./components/municipis/MunicipisEdita";
 import MunicipisCRUD from "./components/municipis/MunicipisCRUD";
+import MunicipisTable from "./components/municipis/MunicipisTable";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Menu />} >
           <Route path="/feines" element={<Feines />} />
           <Route path="/municipis" element={<Municipis />} />
+          <Route path="/municipistable" element={<MunicipisTable />} />
           <Route path="/municipis/afegir" element={<MunicipisEdita />} />
           <Route path="/municipis/:id" element={<MunicipisCRUD />}></Route>
           <Route path="/autors" element={<Autors />} />

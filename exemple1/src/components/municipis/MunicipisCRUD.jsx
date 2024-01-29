@@ -54,7 +54,7 @@ export default function MunicipisCRUD() {
                 setError("Error: "+getMsgError(respostajson.error));
             } else {
                 setError('');
-                navigate('/municipis');
+                navigate('/municipistable');
             }
         })
     }
@@ -75,7 +75,7 @@ export default function MunicipisCRUD() {
                 setError("Error: "+getMsgError(respostajson.error));
             } else {
                 setError('');
-                navigate('/municipis');
+                navigate('/municipistable');
             }
         })
     }
@@ -86,7 +86,7 @@ export default function MunicipisCRUD() {
         }).then(resposta=>{
             // 200 si borrat correctament
             if (resposta.status===200) {
-                navigate('/municipis');
+                navigate('/municipistable');
             } else {
                 setError("Error: "+resposta.status);
             }

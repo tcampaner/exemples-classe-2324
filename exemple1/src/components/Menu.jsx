@@ -8,6 +8,7 @@ export default function Menu() {
                 <Nav className="mr-auto">
                     <Link className="nav-link" to="/feines">Feines</Link>
                     <Link className="nav-link" to="/municipis">Municipis</Link>
+                    <Link className="nav-link" to="/municipistable">Municipis Table</Link>
                     <Link className="nav-link" to="/autors">Autors</Link>
                     <Link className="nav-link" to="/ajuda">Ajuda</Link>
                 </Nav>
