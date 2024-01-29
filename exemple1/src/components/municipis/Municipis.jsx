@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment} from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { ListGroup, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +28,9 @@ export default function Municipis() {
     );
     */
 
-    useEffect(()=>{descarrega()},[]);
+    useEffect(() => { descarrega() }, []);
     // Exemple de ftech amb async/await
-    const descarrega=async ()=>{
+    const descarrega = async () => {
         try {
             const resposta = await fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis');
             // if (resposta.status !== 200) throw 'Error en descarregar les dades';
@@ -42,51 +42,52 @@ export default function Municipis() {
         setDescarregant(false);
     }
 
-   if (descarregant) {
+    if (descarregant) {
         return (
             <div>
                 <h1>Municipis</h1>
-                <Spinner/>
+                <Spinner />
             </div>
         );
     }
     else {
-    return (
-        <>
-        <hr/>
-        <Row>
-          <Col>
-            <h4>Llista de Municipis</h4>
-          </Col>
-          <Col>
-            <Button
-              variant="warning"
-              type="button"
-              onClick={() => {
-                navigate("/municipis/afegir");
-              }}
-            >
-              +
-            </Button>
-          </Col>
-        </Row>
-        <br/>
-        <ListGroup>
-            {municipis.map(function (element, index) {
-                return (
-                    <Fragment key={index}>   { /* Fragment es equivalent a <>, amb key resolvem el problema del warning */   }
-                        <ListGroup.Item variant="primary" >
-                            <Row>
-                                <Col>{element.nom}</Col>
-                                <Col>{element.illa.nom}</Col>
-                            </Row>
-                        </ListGroup.Item>
-                    </Fragment>
-                );
-            })}
-        </ListGroup>
-        </>
-    );
-        }
-        
+        return (
+            <>
+                <hr />
+                <Row md={4}>
+                    <Col>
+                        <h4>Llista de Municipis</h4>
+                    </Col>
+                    <Col>
+                        <Button
+                            variant="warning"
+                            type="button"
+                            onClick={() => {
+                                navigate("/municipis/afegir");
+                            }}
+                        >
+                            +
+                        </Button>
+                    </Col>
+                </Row>
+                <br />
+                <ListGroup>
+                    {municipis.map(function (element, index) {
+                        return (
+                            <Fragment key={index}>   { /* Fragment es equivalent a <>, amb key resolvem el problema del warning */}
+                                <ListGroup.Item variant="primary" >
+                                    <Row md={4}>
+                                        <Col>{element.nom}</Col>
+                                        <Col>{element.illa.nom}</Col>
+                                        <Col><Button variant="info" onClick={() => { navigate("/municipis/" + element.id) }}>...</Button></Col>
+                                    </Row>
+                                </ListGroup.Item>
+                            </Fragment>
+                        );
+                    })}
+                </ListGroup>
+            </>
+        );
+    }
+
 }    

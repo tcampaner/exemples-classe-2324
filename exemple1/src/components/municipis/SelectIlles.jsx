@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form,Row,Col,Alert } from "react-bootstrap";
+import { Form,Row,Col,Alert, Spinner } from "react-bootstrap";
 function SelectIlles(props) {
   const [illes,setIlles]=useState([]);
     const [descarrega,setDescarrega]=useState(true);
@@ -36,10 +36,10 @@ function SelectIlles(props) {
   return (
     <Row>
     <Col sm={6}>
-      <Form.Control as="select" size="sm" custom onChange={props.onChange}>
+      <Form.Select onChange={props.onChange} value={props.id}>
         <option key="-1" value="-1">Tria una Illa...</option>
         { omplirOptions() }
-      </Form.Control>
+      </Form.Select>
     </Col>
   </Row>
   );

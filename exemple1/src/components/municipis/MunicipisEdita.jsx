@@ -53,7 +53,7 @@ export default function MunicipisEdita() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Illa({illa_id})</Form.Label>
-                    <SelectIlles onChange={(e) => { setIlla_id(e.target.value) }} />
+                    <SelectIlles id={illa_id} onChange={(e) => { setIlla_id(e.target.value) }} />
                 </Form.Group>
                 <Button variant="primary" type="button" onClick={guarda}>
                     Guarda
