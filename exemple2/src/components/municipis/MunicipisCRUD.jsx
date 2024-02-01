@@ -1,9 +1,9 @@
 import SelectIlles from "./SelectIlles";
-import { Form, Button, Alert, Spinner} from "react-bootstrap";
+import { Form, Button, Alert, Toast, Spinner} from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function MunicipisCRUD() {
+export default function MunicipisCRUD(props) {
     const [nom, setNom] = useState("");
     const [illa_id, setIlla_id] = useState(null);
     const [error, setError] = useState('');
@@ -11,6 +11,7 @@ export default function MunicipisCRUD() {
     const navigate=useNavigate();
     const { id } = useParams();
     const [descarregant, setDescarregant] = useState(false);
+    const token=JSON.parse(localStorage.getItem('token')); //props.token;
 
     useEffect(()=>{if (id!==-1) {descarrega()}},[]);
 
@@ -42,7 +43,8 @@ export default function MunicipisCRUD() {
         fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis',{
             method:'POST',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
             },
             body:JSON.stringify({
                 nom:nom,
@@ -63,7 +65,8 @@ export default function MunicipisCRUD() {
         fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis/'+id,{
             method:'PUT',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
             },
             body:JSON.stringify({
                 nom:nom,
@@ -83,6 +86,9 @@ export default function MunicipisCRUD() {
     const esborra=()=>{
         fetch('http://balearcs.dawpaucasesnoves.com/balearcsapi/public/api/municipis/'+id,{
             method:'DELETE',
+            headers:{
+                'Authorization':'Bearer '+token
+            }
         }).then(resposta=>{
             // 200 si borrat correctament
             if (resposta.status===200) {

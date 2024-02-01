@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form,Row,Col,Alert } from "react-bootstrap";
+import { Form,Row,Col,Alert, Spinner } from "react-bootstrap";
 function SelectIlles(props) {
   const [illes,setIlles]=useState([]);
     const [descarrega,setDescarrega]=useState(true);

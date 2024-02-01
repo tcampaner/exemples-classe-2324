@@ -1,20 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Row, Col, Spinner, Button } from 'react-bootstrap';
+import { ListGroup, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
-import "ag-grid-community/styles/ag-grid.css"; // Core CSS
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
-import { AG_GRID_LOCALE_CAT } from "./language.cat"; // Traduccions del Grid
 
-export default function MunicipisTable() {
+export default function Municipis() {
     const [municipis, setMunicipis] = useState([]);
     const [descarregant, setDescarregant] = useState(true);
     const navigate = useNavigate();
-    const [columnes, setColumnes] = useState([
-        { field:"id", headerName:"Codi", width:100, filter:true, floatingFilter:true },
-        { field:"nom", headerName:"Municipi", width:200, sortable:true, filter:true, floatingFilter:true },
-        { field:"illa.nom", headerName:"Illa", width:200, sortable:true, filter:true, floatingFilter:true },
-    ]);
 
     /*
     useEffect(
@@ -80,18 +71,21 @@ export default function MunicipisTable() {
                     </Col>
                 </Row>
                 <br />
-                <div className="ag-theme-quartz" style={{ height: 475, width: '50%' }}>
-                    <AgGridReact
-                        columnDefs={columnes}
-                        rowData={municipis}
-                        pagination={true}
-                        localeText={AG_GRID_LOCALE_CAT}
-                        paginationPageSize={8}
-                        onRowClicked={(e) => {
-                            navigate("/municipis/" + e.data.id);
-                        }}
-                    />
-                </div>
+                <ListGroup>
+                    {municipis.map(function (element, index) {
+                        return (
+                            <Fragment key={index}>   { /* Fragment es equivalent a <>, amb key resolvem el problema del warning */}
+                                <ListGroup.Item variant="primary" >
+                                    <Row md={4}>
+                                        <Col>{element.nom}</Col>
+                                        <Col>{element.illa.nom}</Col>
+                                        <Col><Button variant="info" onClick={() => { navigate("/municipis/" + element.id) }}>...</Button></Col>
+                                    </Row>
+                                </ListGroup.Item>
+                            </Fragment>
+                        );
+                    })}
+                </ListGroup>
             </>
         );
     }
