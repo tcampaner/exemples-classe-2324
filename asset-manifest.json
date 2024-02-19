@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/exemples-classe-2324/static/css/main.241951ba.css",
+    "main.js": "/exemples-classe-2324/static/js/main.24c919b5.js",
+    "index.html": "/exemples-classe-2324/index.html",
+    "main.241951ba.css.map": "/exemples-classe-2324/static/css/main.241951ba.css.map",
+    "main.24c919b5.js.map": "/exemples-classe-2324/static/js/main.24c919b5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.241951ba.css",
+    "static/js/main.24c919b5.js"
+  ]
+}
